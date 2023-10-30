@@ -157,3 +157,7 @@ body {
 .footer_link {
   color: #2e7695;
 }
+.card__error{
+  text-align: center;
+  font-size: 25px;
+}

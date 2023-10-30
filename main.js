@@ -43,7 +43,7 @@ form.onsubmit = function (e) {
         deleted();
 
         //Отображение карточки с ошибкой
-        const html = ` <div class="card">Город введен не верно</div>`;
+        const html = ` <div class="card"><h3 class ="card__error">Город введен не верно</h3></div>`;
         render(html);
       } else {
         //Oтображаем полученные даныые на странице
