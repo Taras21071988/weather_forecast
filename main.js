@@ -28,10 +28,12 @@ form.onsubmit = function (e) {
       console.log(data);
       //Проверка на ошибки при вводе
       if (data.error) {
+        //Если есть ошибка то выводим её
+
         //Удаляем предыдущую карточку
         const prevCard = document.querySelector(".card");
         if (prevCard) prevCard.remove();
-        
+
         //Отображение карточки с ошибкой
         const html = ` <div class="card">Город введен не верно</div>`;
         header.insertAdjacentHTML("afterend", html);
