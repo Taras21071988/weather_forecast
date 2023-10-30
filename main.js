@@ -4,8 +4,17 @@ const form = document.querySelector("#form");
 const input = document.querySelector("#inputCity");
 const header = document.querySelector("#header");
 
-//Слушаем отправку с формы
+//Функция рендера карточки на странице
+function render(html) {
+  header.insertAdjacentHTML("afterend", html);
+}
 
+//Функция удаления предыдущей карточки
+function deleted() {
+  const prevCard = document.querySelector(".card");
+  if (prevCard) prevCard.remove();
+}
+//Слушаем отправку с формы
 form.onsubmit = function (e) {
   //Отменяем отправку формы
   e.preventDefault();
@@ -31,18 +40,16 @@ form.onsubmit = function (e) {
         //Если есть ошибка то выводим её
 
         //Удаляем предыдущую карточку
-        const prevCard = document.querySelector(".card");
-        if (prevCard) prevCard.remove();
+        deleted();
 
         //Отображение карточки с ошибкой
         const html = ` <div class="card">Город введен не верно</div>`;
-        header.insertAdjacentHTML("afterend", html);
+        render(html);
       } else {
         //Oтображаем полученные даныые на странице
 
         //1 - Удаляем предыдущую карточку
-        const prevCard = document.querySelector(".card");
-        if (prevCard) prevCard.remove();
+        deleted();
 
         //2 - Разметка для карточки с погодой
         const html = `
@@ -61,7 +68,7 @@ form.onsubmit = function (e) {
         `;
 
         //3 - Отображение карточки с погодой на странице
-        header.insertAdjacentHTML("afterend", html);
+        render(html);
       }
     });
 };
