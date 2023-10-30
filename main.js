@@ -28,7 +28,13 @@ form.onsubmit = function (e) {
       console.log(data);
       //Проверка на ошибки при вводе
       if (data.error) {
-        alert("Город введен не верно");
+        //Удаляем предыдущую карточку
+        const prevCard = document.querySelector(".card");
+        if (prevCard) prevCard.remove();
+        
+        //Отображение карточки с ошибкой
+        const html = ` <div class="card">Город введен не верно</div>`;
+        header.insertAdjacentHTML("afterend", html);
       } else {
         //Oтображаем полученные даныые на странице
 
