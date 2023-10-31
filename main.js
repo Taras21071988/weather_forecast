@@ -14,6 +14,33 @@ function removeCard() {
   const prevCard = document.querySelector(".card");
   if (prevCard) prevCard.remove();
 }
+
+//Карточка с ошибкой
+
+function showError() {
+  removeCard();
+  const html = ` <div class="card"><h3 class ="card__error">Город введен не верно</h3></div>`;
+  renderCard(html);
+}
+
+//Карточка с погодой
+function showCard(name, country, temp, condition) {
+  removeCard();
+  const html = `
+  <div class="card">
+      <h2 class="card-city">${name} <span>${country}</span></h2>
+
+      <div class="card-weather">
+          <div class="card-value">${temp.toFixed()}<sup>°c</sup></div>
+
+          <img class="card-img" src="./img/example.png" alt="Weather" />
+      </div>
+      <div class="card-desc">${condition}</div>
+  </div>
+  `;
+  renderCard(html);
+}
+
 //Слушаем отправку с формы
 form.onsubmit = function (e) {
   //Отменяем отправку формы
@@ -38,37 +65,18 @@ form.onsubmit = function (e) {
       //Проверка на ошибки при вводе
       if (data.error) {
         //Если есть ошибка то выводим её
-
-        //Удаляем предыдущую карточку
-        removeCard();
-
         //Отображение карточки с ошибкой
-        const html = ` <div class="card"><h3 class ="card__error">Город введен не верно</h3></div>`;
-        renderCard(html);
+        showError();
       } else {
         //Oтображаем полученные даныые на странице
 
-        //1 - Удаляем предыдущую карточку
-        removeCard();
-
-        //2 - Разметка для карточки с погодой
-        const html = `
-        <div class="card">
-            <h2 class="card-city">${data.location.name} <span>${
-          data.location.country
-        }</span></h2>
-
-            <div class="card-weather">
-                <div class="card-value">${data.current.temp_c.toFixed()}<sup>°c</sup></div>
-
-                <img class="card-img" src="./img/example.png" alt="Weather" />
-            </div>
-            <div class="card-desc">${data.current.condition.text}</div>
-        </div>
-        `;
-
-        //3 - Отображение карточки с погодой на странице
-        renderCard(html);
+        //Функция отображения карточки с погодой
+        showCard(
+          data.location.name,
+          data.location.country,
+          data.current.temp_c,
+          data.current.condition.text
+        );
       }
     });
 };
