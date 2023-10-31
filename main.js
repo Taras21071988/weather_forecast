@@ -24,7 +24,7 @@ function showError() {
 }
 
 //Карточка с погодой
-function showCard(name, country, temp, condition) {
+function showCard({name, country, temp, condition}) {
   removeCard();
   const html = `
   <div class="card">
@@ -41,42 +41,31 @@ function showCard(name, country, temp, condition) {
   renderCard(html);
 }
 
+async function getWeather(city) {
+  const apiKey = "789bcf6e3a4847ceaed81634233010";
+  const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
 //Слушаем отправку с формы
-form.onsubmit = function (e) {
+form.onsubmit = async function (e) {
   //Отменяем отправку формы
   e.preventDefault();
-
-  //Получаем значение из input, с помощью trim() - обрезаем пробелы
   let city = input.value.trim();
+  const data = await getWeather(city);
 
-  //Делаем запрос на сервер для получения данных
-  const apiKey = "789bcf6e3a4847ceaed81634233010"; //Ключ для Api
+  if (data.error) {
+    showError();
+  } else {
+    const weatherData = {
+      name: data.location.name,
+      country: data.location.country,
+      temp: data.current.temp_c,
+      condition: data.current.condition.text,
+    };
 
-  //Адрес запроса
-  const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-
-  //Выполняем запрос
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      //Проверка на ошибки при вводе
-      if (data.error) {
-        //Если есть ошибка то выводим её
-        //Отображение карточки с ошибкой
-        showError();
-      } else {
-        //Oтображаем полученные даныые на странице
-
-        //Функция отображения карточки с погодой
-        showCard(
-          data.location.name,
-          data.location.country,
-          data.current.temp_c,
-          data.current.condition.text
-        );
-      }
-    });
+    showCard(weatherData);
+  }
 };
