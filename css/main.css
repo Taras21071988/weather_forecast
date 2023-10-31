@@ -139,8 +139,6 @@ body {
   font-size: 50%;
 }
 
-.card-img {
-}
 .card-desc {
   font-size: 20px;
   line-height: 1.2;
@@ -157,7 +155,7 @@ body {
 .footer_link {
   color: #2e7695;
 }
-.card__error{
+.card__error {
   text-align: center;
   font-size: 25px;
 }
