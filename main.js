@@ -1,5 +1,4 @@
-
-
+import conditions from "./conditions.js";
 
 //Получаем элементы на странице
 
@@ -63,11 +62,16 @@ form.onsubmit = async function (e) {
   if (data.error) {
     showError();
   } else {
+    const info = conditions.find(
+      (obj) => obj.code === data.current.condition.code
+    );
+    console.log(info);
+    console.log(info.languages[23]["day_text"]);
     const weatherData = {
       name: data.location.name,
       country: data.location.country,
       temp: data.current.temp_c,
-      condition: data.current.condition.text,
+      condition: info.languages[23]["day_text"],
     };
 
     showCard(weatherData);
