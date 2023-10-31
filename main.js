@@ -1,3 +1,6 @@
+
+
+
 //Получаем элементы на странице
 
 const form = document.querySelector("#form");
@@ -24,7 +27,7 @@ function showError() {
 }
 
 //Карточка с погодой
-function showCard({name, country, temp, condition}) {
+function showCard({ name, country, temp, condition }) {
   removeCard();
   const html = `
   <div class="card">
@@ -49,6 +52,7 @@ async function getWeather(city) {
   console.log(data);
   return data;
 }
+
 //Слушаем отправку с формы
 form.onsubmit = async function (e) {
   //Отменяем отправку формы
