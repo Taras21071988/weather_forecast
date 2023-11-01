@@ -67,11 +67,16 @@ form.onsubmit = async function (e) {
     );
     console.log(info);
     console.log(info.languages[23]["day_text"]);
+
+    const condition = data.current.is_day
+      ? info.languages[23]["day_text"]
+      : info.languages[23]["night_text"];
+
     const weatherData = {
       name: data.location.name,
       country: data.location.country,
       temp: data.current.temp_c,
-      condition: data.current.is_day? info.languages[23]["day_text"]:info.languages[23]["night_text"],
+      condition: condition,
     };
 
     showCard(weatherData);
