@@ -84,7 +84,7 @@ body {
 /* Card*/
 
 .card {
-  width: 360px;
+  min-width: 360px;
   padding: 30px;
   background-color: #fff;
   border-radius: 6px;
