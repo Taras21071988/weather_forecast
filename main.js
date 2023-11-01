@@ -33,7 +33,7 @@ function showCard({ name, country, temp, condition }) {
       <h2 class="card-city">${name} <span>${country}</span></h2>
 
       <div class="card-weather">
-          <div class="card-value">${temp.toFixed()}<sup>°c</sup></div>
+          <div class="card-value">${temp}<sup>°c</sup></div>
 
           <img class="card-img" src="./img/example.png" alt="Weather" />
       </div>
