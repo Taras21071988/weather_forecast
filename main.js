@@ -68,10 +68,11 @@ form.onsubmit = async function (e) {
     console.log(info);
     console.log(info.languages[23]["day_text"]);
 
-    const weatherPath = "./img/"+(data.current.is_day ? "day" : "nigth") + "/";
+    const weatherPath =
+      "./img/" + (data.current.is_day ? "day" : "night") + "/";
     const weatherName = (data.current.is_day ? info.day : info.night) + ".png";
     const imgPath = weatherPath + weatherName;
-    console.log(weatherName);
+    console.log(weatherPath + weatherName);
 
     const condition = data.current.is_day
       ? info.languages[23]["day_text"]
