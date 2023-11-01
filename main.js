@@ -26,7 +26,7 @@ function showError() {
 }
 
 //Карточка с погодой
-function showCard({ name, country, temp, condition }) {
+function showCard({ name, country, temp, condition, imgPath }) {
   removeCard();
   const html = `
   <div class="card">
@@ -35,7 +35,7 @@ function showCard({ name, country, temp, condition }) {
       <div class="card-weather">
           <div class="card-value">${temp}<sup>°c</sup></div>
 
-          <img class="card-img" src="./img/example.png" alt="Weather" />
+          <img class="card-img" src="${imgPath}" alt="Weather" />
       </div>
       <div class="card-desc">${condition}</div>
   </div>
@@ -68,6 +68,11 @@ form.onsubmit = async function (e) {
     console.log(info);
     console.log(info.languages[23]["day_text"]);
 
+    const weatherPath = "./img/"+(data.current.is_day ? "day" : "nigth") + "/";
+    const weatherName = (data.current.is_day ? info.day : info.night) + ".png";
+    const imgPath = weatherPath + weatherName;
+    console.log(weatherName);
+
     const condition = data.current.is_day
       ? info.languages[23]["day_text"]
       : info.languages[23]["night_text"];
@@ -77,6 +82,7 @@ form.onsubmit = async function (e) {
       country: data.location.country,
       temp: data.current.temp_c,
       condition: condition,
+      imgPath,
     };
 
     showCard(weatherData);

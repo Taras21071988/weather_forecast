@@ -143,6 +143,10 @@ body {
   font-size: 20px;
   line-height: 1.2;
 }
+.card-img {
+  max-width: 120px;
+  max-height: 120px;
+}
 .footer {
   padding: 8px 15px 8px;
   width: 100%;
