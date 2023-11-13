@@ -17,7 +17,7 @@ body {
 .header {
   width: 100%;
   padding: 40px 15px 50px;
-  background: linear-gradient(93deg, #4cb8c4 0%, #3cd3ad 100%), #232323;
+  background: linear-gradient(93deg, #cc0fc3 0%, #09df09 100%), #232323;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@ body {
   width: 154px;
   height: 54px;
   border-radius: 6px;
-  background: #ed3052;
+  background: #cc0fc3;
   position: relative;
   transition: all 500ms ease;
   color: #fff;
@@ -76,7 +76,7 @@ body {
   height: 54px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 6px;
-  transition: all 2s ease;
+  transition: all 0.8s ease;
 }
 .btn:hover:before {
   width: 100%;
